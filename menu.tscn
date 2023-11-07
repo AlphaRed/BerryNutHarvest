@@ -36,11 +36,13 @@ grow_vertical = 2
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 text = "Start"
+flat = true
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 text = "Quit"
+flat = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -56,7 +58,6 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_8607m")
-expand_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
