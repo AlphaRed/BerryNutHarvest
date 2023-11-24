@@ -1,12 +1,18 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 10.0
 const ACCEL = 0.5
+const LERP_VAL = 0.15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var model = $MeshInstance3D
+@onready var armature = $Armature
+@onready var animtree = $AnimationTree
+
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _physics_process(delta):
 	# Add the gravity...may not need
@@ -21,10 +27,13 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCEL)
 		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCEL)
 		# set look direction
-		var look_dir = Vector2(-direction.z, -direction.x)
-		model.rotation.y = look_dir.angle()
+		var look_dir = Vector2(direction.z, direction.x)
+		armature.rotation.y = lerp(armature.rotation.y, look_dir.angle(), 0.25)
+		#armature.rotation.y = look_dir.angle()
 	else:
 		velocity.x = move_toward(velocity.x, 0, ACCEL)
 		velocity.z = move_toward(velocity.z, 0, ACCEL)
+	
+	animtree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
 	
 	move_and_slide()

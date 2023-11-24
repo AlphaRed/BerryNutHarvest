@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cnpeelowtafpv"]
 
 [ext_resource type="PackedScene" uid="uid://b2lgyij3clvx1" path="res://main-room.glb" id="2_5vuas"]
-[ext_resource type="PackedScene" uid="uid://d2utchx1bcjau" path="res://player.tscn" id="2_8vbdd"]
+[ext_resource type="PackedScene" uid="uid://dcik1tqexary6" path="res://tomba.tscn" id="3_b1hno"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a0plh"]
 
@@ -16,7 +16,7 @@ reflected_light_source = 1
 [sub_resource type="PlaneMesh" id="PlaneMesh_2y8ok"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wufui"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(20.086, 0.5, 19.9053)
 
 [node name="TinyMouseHouse" type="Node3D"]
 
@@ -32,15 +32,15 @@ environment = SubResource("Environment_2fkpf")
 [node name="main-room" parent="." instance=ExtResource("2_5vuas")]
 visible = false
 
-[node name="Player" parent="." instance=ExtResource("2_8vbdd")]
-
 [node name="Testplane" type="StaticBody3D" parent="."]
 
 [node name="TestPlane" type="MeshInstance3D" parent="Testplane"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_2y8ok")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Testplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.233628, 0)
 shape = SubResource("BoxShape3D_wufui")
+
+[node name="tomba" parent="." instance=ExtResource("3_b1hno")]
